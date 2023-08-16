@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "search-background": "url(/world-map.png)",
+      },
       colors: {
         primary: "#590bd8",
         primaryLighter: "#DDD5EA",

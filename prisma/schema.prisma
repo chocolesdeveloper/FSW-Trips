@@ -11,6 +11,7 @@ model Trip {
   id              String            @id @default(uuid())
   name            String
   location        String
+  countryCode     String
   startDate       DateTime
   endDate         DateTime
   pricePerDay     Decimal           @db.Decimal(8, 2)
@@ -18,6 +19,7 @@ model Trip {
   coverImage      String
   imagesUrl       String[]
   highlights      String[]
+  recommended     Boolean
   maxGuests       Int
   TripReservation TripReservation[]
 }

@@ -10,8 +10,6 @@ async function fetchTrips() {
 export async function RecommendedTrips() {
   const trips = await fetchTrips()
 
-  console.log(trips)
-
   return (
     <div className="container mx-auto px-5 mt-5">
       <div className="flex items-center">

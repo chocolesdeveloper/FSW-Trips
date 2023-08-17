@@ -1,14 +1,17 @@
 import { Trip } from "@prisma/client"
 import Image from "next/image"
-import ReactCountryFlag from "react-country-flag"
+import Link from "next/link"
+import { Location } from "./Location"
 
 interface TripItemProps {
   trip: Trip
 }
 
 export function TripItem({ trip }: TripItemProps) {
+  const path = !!trip ? `/trips/${trip.id}` : "/"
+
   return (
-    <div className="flex flex-col gap-1">
+    <Link href={path} as={`/trips/${trip.id}`} className="flex flex-col gap-1">
       <div className="relative w-[320px] h-[280px]">
         <Image
           src={trip.coverImage}
@@ -23,14 +26,13 @@ export function TripItem({ trip }: TripItemProps) {
       </div>
 
       <h3 className="font-medium text-primaryDarker text-sm">{trip.name}</h3>
-      <div className="flex items-center gap-2">
-        <ReactCountryFlag countryCode={trip.countryCode} svg />
-        <p className="text-xs text-grayPrimary">{trip.location}</p>
-      </div>
+
+      <Location countryCode={trip.countryCode} location={trip.location} />
+
       <p className="text-sm">
         <span className="font-medium text-primary text-base"> R${Number(trip.pricePerDay)}</span>{" "}
         por dia
       </p>
-    </div>
+    </Link>
   )
 }

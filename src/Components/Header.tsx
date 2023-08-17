@@ -34,13 +34,19 @@ export function Header() {
             onClick={() => setMenuIsOpen(!menuIsOpen)}
             className="cursor-pointer"
           />
-          <Image
-            src={data?.user?.image ?? ""}
-            alt={data?.user?.name!}
-            width={28}
-            height={28}
-            className="rounded-full"
-          />
+
+          {!data ? (
+            <div className="animate-spin p-2 border-t-2 border-b-2 rounded-full border-primaryDarker" />
+          ) : (
+            <Image
+              src={data?.user?.image!}
+              alt={data?.user?.name!}
+              width={28}
+              height={28}
+              priority={true}
+              className="rounded-full"
+            />
+          )}
 
           {menuIsOpen && (
             <div className="absolute top-[55px] left-0 w-full h-full bg-white shadow-xl rounded-lg">

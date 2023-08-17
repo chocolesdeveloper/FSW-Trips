@@ -16,7 +16,7 @@ export function TripSearch() {
         <Input placeholder="Onde você quer ir?" />
 
         <div className="flex gap-4">
-          <DatePicker placeholderText="Data de ida" onChange={() => console.log("oi")} />
+          <DatePicker placeholderText="Data de ida" onChange={() => {}} />
           <CurrencyInput placeholder="Quanto quer gastar?" />
         </div>
 

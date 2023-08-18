@@ -8,7 +8,7 @@ interface TripItemProps {
 }
 
 export function TripItem({ trip }: TripItemProps) {
-  const path = !!trip ? `/trips/${trip.id}` : "/"
+  const path = trip ? `/trips/${trip.id}` : "/"
 
   return (
     <Link href={path} as={`/trips/${trip.id}`} className="flex flex-col gap-1">

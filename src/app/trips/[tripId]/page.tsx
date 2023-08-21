@@ -24,7 +24,11 @@ export default async function TripDetails({ params }: { params: { tripId: string
     <div className="container mx-auto">
       <div className="flex flex-col">
         <TripHeader tripDetails={tripDetails} />
-        <TripReservation tripDetails={tripDetails} />
+        <TripReservation
+          tripStartDate={tripDetails.startDate}
+          tripEndDate={tripDetails.endDate}
+          maxGuests={tripDetails.maxGuests}
+        />
         <TripDescription description={tripDetails.description} />
         <TripHighlights highlights={tripDetails.highlights} />
       </div>

@@ -3,12 +3,14 @@
 import Button from "@/Components/Button"
 import DatePicker from "@/Components/DatePicker"
 import Input from "@/Components/Input"
+import { addDays, differenceInDays } from "date-fns"
 import { Controller, useForm } from "react-hook-form"
 
 interface TripReservationProps {
   tripStartDate: Date
   tripEndDate: Date
   maxGuests: number
+  pricePorDay: number
 }
 
 interface TripReservationForm {
@@ -17,7 +19,12 @@ interface TripReservationForm {
   guests: number
 }
 
-export function TripReservation({ tripEndDate, tripStartDate, maxGuests }: TripReservationProps) {
+export function TripReservation({
+  tripEndDate,
+  tripStartDate,
+  maxGuests,
+  pricePorDay,
+}: TripReservationProps) {
   const {
     register,
     handleSubmit,
@@ -31,6 +38,7 @@ export function TripReservation({ tripEndDate, tripStartDate, maxGuests }: TripR
   }
 
   const startDate = watch("startDate")
+  const endDate = watch("endDate")
 
   return (
     <form className="flex flex-col px-2" onSubmit={handleSubmit(onSubmit)}>
@@ -66,12 +74,13 @@ export function TripReservation({ tripEndDate, tripStartDate, maxGuests }: TripR
           control={control}
           render={({ field }) => (
             <DatePicker
+              disabled={startDate === undefined ? true : false}
               onChange={field.onChange}
               selected={field.value}
               error={!!errors?.endDate}
               errorMessage={errors?.endDate?.message}
               placeholderText="Data final"
-              minDate={startDate ?? tripStartDate}
+              minDate={addDays(startDate, 1)}
               maxDate={tripEndDate}
             />
           )}
@@ -92,8 +101,14 @@ export function TripReservation({ tripEndDate, tripStartDate, maxGuests }: TripR
       />
 
       <div className="flex items-center justify-between mt-3">
-        <p className="font-medium text-sm text-primaryDarker">Total de:</p>
-        <p className="font-medium text-sm text-primaryDarker">R$ 5000</p>
+        <p className="font-medium text-sm text-primaryDarker">Total:</p>
+        {startDate && endDate ? (
+          <p className="font-medium text-sm text-primaryDarker">
+            R$ {differenceInDays(endDate, startDate) * pricePorDay}
+          </p>
+        ) : (
+          <p className="font-medium text-sm text-primaryDarker">R$ 0</p>
+        )}
       </div>
 
       <div className="border-b pb-10 border-grayLighter">

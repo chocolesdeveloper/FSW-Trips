@@ -3,10 +3,11 @@
 import Button from "@/Components/Button"
 import DatePicker from "@/Components/DatePicker"
 import Input from "@/Components/Input"
-import { addDays, differenceInDays } from "date-fns"
+import { addDays, differenceInDays, isBefore } from "date-fns"
 import { Controller, useForm } from "react-hook-form"
 
 interface TripReservationProps {
+  tripId: string
   tripStartDate: Date
   tripEndDate: Date
   maxGuests: number
@@ -24,17 +25,56 @@ export function TripReservation({
   tripStartDate,
   maxGuests,
   pricePorDay,
+  tripId,
 }: TripReservationProps) {
   const {
     register,
     handleSubmit,
     control,
     watch,
+    setError,
     formState: { errors },
   } = useForm<TripReservationForm>()
 
-  function onSubmit(data: TripReservationForm) {
-    console.log(data)
+  async function onSubmit(data: TripReservationForm) {
+    try {
+      const response = await fetch("http://localhost:3000/api/trips/check", {
+        method: "POST",
+        body: JSON.stringify({
+          startDate: data.startDate,
+          endDate: data.endDate,
+          tripId,
+        }),
+      })
+
+      const res = await response.json()
+
+      if (res?.error?.code === "TRIP_ALREADY_RESERVED") {
+        setError("startDate", {
+          type: "manual",
+          message: "Esta data já está reservada.",
+        })
+
+        return setError("endDate", {
+          type: "manual",
+          message: "Esta data já está reservada.",
+        })
+      }
+
+      if (["INVALID_END_DATE", "INVALID_START_DATE"].includes(res?.error?.code)) {
+        setError("startDate", {
+          type: "manual",
+          message: "Data inválida.",
+        })
+
+        return setError("endDate", {
+          type: "manual",
+          message: "Data inválida.",
+        })
+      }
+    } catch (error) {
+      console.log(`Ocorreu um erro: ${error}`)
+    }
   }
 
   const startDate = watch("startDate")
@@ -59,7 +99,11 @@ export function TripReservation({
               error={!!errors?.startDate}
               errorMessage={errors?.startDate?.message}
               placeholderText="Data final"
-              minDate={new Date()}
+              minDate={
+                isBefore(new Date(tripStartDate), new Date())
+                  ? new Date()
+                  : addDays(tripStartDate, 1)
+              }
             />
           )}
         />

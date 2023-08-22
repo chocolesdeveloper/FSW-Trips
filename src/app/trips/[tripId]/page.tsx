@@ -25,6 +25,7 @@ export default async function TripDetails({ params }: { params: { tripId: string
       <div className="flex flex-col">
         <TripHeader tripDetails={tripDetails} />
         <TripReservation
+          tripId={tripDetails.id}
           tripStartDate={tripDetails.startDate}
           tripEndDate={tripDetails.endDate}
           maxGuests={tripDetails.maxGuests}

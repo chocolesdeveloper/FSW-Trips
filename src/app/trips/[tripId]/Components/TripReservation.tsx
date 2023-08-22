@@ -133,11 +133,16 @@ export function TripReservation({
 
       <Input
         placeholder={`Números de hóspedes max: (${maxGuests})`}
+        type="number"
         className="mt-3"
         {...register("guests", {
           required: {
             value: true,
             message: "Número de hóspedes é obrigatório.",
+          },
+          max: {
+            value: maxGuests,
+            message: `Número maxíma de hóspedes é ${maxGuests} hóspedes`,
           },
         })}
         error={!!errors.guests}

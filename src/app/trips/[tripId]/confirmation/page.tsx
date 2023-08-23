@@ -1,18 +1,21 @@
 "use client"
 
-import { Location } from "@/Components/Location"
+import { useEffect, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Trip } from "@prisma/client"
 import { format } from "date-fns"
-import Image from "next/image"
-import { useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
-
 import ptBR from "date-fns/locale/pt-BR"
+import Image from "next/image"
+import { Location } from "@/Components/Location"
 import Button from "@/Components/Button"
+import { useSession } from "next-auth/react"
 
 export default function Confirmation({ params }: { params: { tripId: string } }) {
   const [trip, setTrip] = useState<Trip | null>(null)
   const [totalPrice, setTotalPrice] = useState<number>(0)
+
+  const { status } = useSession()
+  const router = useRouter()
 
   const searchParams = useSearchParams()
 
@@ -37,8 +40,12 @@ export default function Confirmation({ params }: { params: { tripId: string } })
       }
     }
 
+    if (status !== "authenticated") {
+      router.push("/")
+    }
+
     getTrip()
-  }, [])
+  }, [status])
 
   const startDate = new Date(searchParams.get("startDate") ?? "")
   const endDate = new Date(searchParams.get("endDate") ?? "")
@@ -103,7 +110,7 @@ export default function Confirmation({ params }: { params: { tripId: string } })
           </p>
         </div>
 
-        <h3 className="font-semibold mt-3">Hóspedes</h3>
+        <h3 className="font-semibold mt-5">Hóspedes</h3>
         <div className="flex items-center gap-3 mt-1">
           <p>{guests} hóspedes</p>
         </div>

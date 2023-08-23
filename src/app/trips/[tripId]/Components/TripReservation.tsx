@@ -4,6 +4,7 @@ import Button from "@/Components/Button"
 import DatePicker from "@/Components/DatePicker"
 import Input from "@/Components/Input"
 import { addDays, differenceInDays, isBefore } from "date-fns"
+import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
 
 interface TripReservationProps {
@@ -35,6 +36,8 @@ export function TripReservation({
     setError,
     formState: { errors },
   } = useForm<TripReservationForm>()
+
+  const router = useRouter()
 
   async function onSubmit(data: TripReservationForm) {
     try {
@@ -72,6 +75,12 @@ export function TripReservation({
           message: "Data inválida.",
         })
       }
+
+      router.push(
+        `/trips/${tripId}/confirmation?startDate=${data.startDate.toISOString()}&endDate=${data.endDate.toISOString()}&maxGuests=${
+          data.guests
+        }`
+      )
     } catch (error) {
       console.log(`Ocorreu um erro: ${error}`)
     }

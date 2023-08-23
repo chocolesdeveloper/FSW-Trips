@@ -9,12 +9,13 @@ import Image from "next/image"
 import { Location } from "@/Components/Location"
 import Button from "@/Components/Button"
 import { useSession } from "next-auth/react"
+import { toast } from "react-toastify"
 
 export default function Confirmation({ params }: { params: { tripId: string } }) {
   const [trip, setTrip] = useState<Trip | null>(null)
   const [totalPrice, setTotalPrice] = useState<number>(0)
 
-  const { status } = useSession()
+  const { status, data } = useSession()
   const router = useRouter()
 
   const searchParams = useSearchParams()
@@ -48,6 +49,27 @@ export default function Confirmation({ params }: { params: { tripId: string } })
 
     getTrip()
   }, [status, searchParams])
+
+  async function handleBuyClick() {
+    const response = await fetch("http://localhost:3000/api/trips/reservation", {
+      method: "POST",
+      body: JSON.stringify({
+        tripId: params.tripId,
+        startDate: searchParams.get("startDate"),
+        endDate: searchParams.get("endDate"),
+        guests: searchParams.get("maxGuests"),
+        userId: (data?.user as any)?.id,
+        totalPaid: totalPrice,
+      }),
+    })
+
+    if (!response.ok) {
+      return toast.error("Ocorreu um erro ao realizar a reserva")
+    }
+
+    router.push("/")
+    toast.success("Reserva criada!")
+  }
 
   const startDate = new Date(searchParams.get("startDate") ?? "")
   const endDate = new Date(searchParams.get("endDate") ?? "")
@@ -118,7 +140,9 @@ export default function Confirmation({ params }: { params: { tripId: string } })
         </div>
       </div>
 
-      <Button className="mt-5 w-full">Finalizar compra</Button>
+      <Button className="mt-5 w-full" onClick={handleBuyClick}>
+        Finalizar compra
+      </Button>
     </div>
   )
 }

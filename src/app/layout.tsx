@@ -8,6 +8,9 @@ import { Poppins } from "next/font/google"
 import { Header } from "../Components/Header"
 import { Footer } from "@/Components/Footer"
 
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.min.css"
+
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800", "900"] })
 
 export const metadata: Metadata = {
@@ -22,6 +25,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NextAuthProvider>
           <Header />
           {children}
+
+          <ToastContainer autoClose={3000} position="bottom-center" />
           <Footer />
         </NextAuthProvider>
       </body>

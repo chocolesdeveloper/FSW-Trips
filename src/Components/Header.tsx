@@ -11,6 +11,8 @@ export function Header() {
   const { status, data } = useSession()
   const [menuIsOpen, setMenuIsOpen] = useState(false)
 
+  const href = status !== "unauthenticated" ? "/" : "/my-trips"
+
   function handleSignIn() {
     return signIn()
   }
@@ -52,7 +54,12 @@ export function Header() {
           )}
 
           {menuIsOpen && (
-            <div className="absolute top-[55px] left-0 w-full h-full bg-white shadow-xl rounded-lg z-50">
+            <div className="absolute top-[55px] left-0 w-full bg-white shadow-xl rounded-lg z-50 flex flex-col item-center h-[100px] px-2">
+              <Link href={href} as="/my-trips">
+                <button className="text-primary text-sm font-semibold w-full h-full pb-2 border-b border-primaryDarker">
+                  Minhas viagens
+                </button>
+              </Link>
               <button
                 className="text-primary text-sm font-semibold w-full h-full"
                 onClick={handleSignOut}

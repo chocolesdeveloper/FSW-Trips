@@ -21,23 +21,25 @@ export default function Confirmation({ params }: { params: { tripId: string } })
 
   useEffect(() => {
     async function getTrip() {
-      try {
-        const response = await fetch("/api/trips/check", {
-          method: "POST",
-          body: JSON.stringify({
-            tripId: params.tripId,
-            startDate: searchParams.get("startDate"),
-            endDate: searchParams.get("endDate"),
-          }),
-        })
+      const response = await fetch("/api/trips/check", {
+        method: "POST",
+        body: JSON.stringify({
+          tripId: params.tripId,
+          startDate: searchParams.get("startDate"),
+          endDate: searchParams.get("endDate"),
+        }),
+      })
 
-        const { trip, totalPrice } = await response.json()
+      const res = await response.json()
 
-        setTrip(trip)
-        setTotalPrice(totalPrice)
-      } catch (error) {
-        console.error(`Ocorreu um erro: ${error}`)
+      if (res?.error) {
+        return router.push("/")
       }
+
+      const { trip, totalPrice } = res
+
+      setTrip(trip)
+      setTotalPrice(totalPrice)
     }
 
     if (status !== "authenticated") {
@@ -45,7 +47,7 @@ export default function Confirmation({ params }: { params: { tripId: string } })
     }
 
     getTrip()
-  }, [status])
+  }, [status, searchParams])
 
   const startDate = new Date(searchParams.get("startDate") ?? "")
   const endDate = new Date(searchParams.get("endDate") ?? "")

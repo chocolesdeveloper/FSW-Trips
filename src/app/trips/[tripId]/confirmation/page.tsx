@@ -67,7 +67,7 @@ export default function Confirmation({ params }: { params: { tripId: string } })
       return toast.error("Ocorreu um erro ao realizar a reserva")
     }
 
-    router.push("/")
+    router.push("/my-trips")
     toast.success("Reserva criada!")
   }
 

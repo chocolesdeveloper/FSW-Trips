@@ -55,7 +55,7 @@ export function Header() {
 
           {menuIsOpen && (
             <div className="absolute top-[55px] left-0 w-full bg-white shadow-xl rounded-lg z-50 flex flex-col item-center h-[100px] px-2">
-              <Link href={href} as="/my-trips">
+              <Link href={href} as="/my-trips" onClick={() => setMenuIsOpen(false)}>
                 <button className="text-primary text-sm font-semibold w-full h-full pb-2 border-b border-primaryDarker">
                   Minhas viagens
                 </button>

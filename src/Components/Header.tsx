@@ -24,8 +24,8 @@ export function Header() {
 
   return (
     <div className="container mx-auto px-5 flex justify-between items-center h-[88px]">
-      <Link href="/" as="/">
-        <Image width={183} height={32} src="/logo.svg" alt="FullStackWeek Trips logo" />
+      <Link href="/">
+        <Image width={183} height={32} src="/logo.svg" alt="FullStackWeek Trips logo" priority />
       </Link>
 
       {status === "unauthenticated" ? (

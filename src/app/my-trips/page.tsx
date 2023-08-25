@@ -53,7 +53,7 @@ export default function MyTrips() {
             Infelizmente você não tem nem uma viagem :(
           </p>
 
-          <Link href="/" as="/">
+          <Link href="/">
             <Button className="px-5">Fazer Reserva</Button>
           </Link>
         </div>

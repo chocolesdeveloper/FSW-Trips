@@ -10,12 +10,13 @@ import { Location } from "@/Components/Location"
 import Button from "@/Components/Button"
 import { useSession } from "next-auth/react"
 import { toast } from "react-toastify"
+import { loadStripe } from "@stripe/stripe-js"
 
 export default function Confirmation({ params }: { params: { tripId: string } }) {
   const [trip, setTrip] = useState<Trip | null>(null)
   const [totalPrice, setTotalPrice] = useState<number>(0)
 
-  const { status, data } = useSession()
+  const { status } = useSession()
   const router = useRouter()
 
   const searchParams = useSearchParams()
@@ -51,15 +52,17 @@ export default function Confirmation({ params }: { params: { tripId: string } })
   }, [status, searchParams])
 
   async function handleBuyClick() {
-    const response = await fetch("http://localhost:3000/api/trips/reservation", {
+    const response = await fetch("http://localhost:3000/api/payment", {
       method: "POST",
       body: JSON.stringify({
         tripId: params.tripId,
         startDate: searchParams.get("startDate"),
         endDate: searchParams.get("endDate"),
         guests: searchParams.get("maxGuests"),
-        userId: (data?.user as any)?.id,
-        totalPaid: totalPrice,
+        totalPrice,
+        coverImage: trip?.coverImage,
+        description: trip?.description,
+        name: trip?.name,
       }),
     })
 
@@ -67,7 +70,13 @@ export default function Confirmation({ params }: { params: { tripId: string } })
       return toast.error("Ocorreu um erro ao realizar a reserva")
     }
 
-    router.push("/my-trips")
+    const { sessionId } = await response.json()
+
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY as string)
+
+    await stripe?.redirectToCheckout({ sessionId })
+
+    // router.push("/my-trips")
     toast.success("Reserva criada!")
   }
 

@@ -17,8 +17,8 @@ export async function POST(request: Request) {
       startDate,
       endDate,
       guests,
-      totalPrice,
       userId: (userSession?.user as any)?.id,
+      totalPrice,
     },
     line_items: [
       {

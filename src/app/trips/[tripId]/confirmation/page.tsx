@@ -76,7 +76,7 @@ export default function Confirmation({ params }: { params: { tripId: string } })
 
     await stripe?.redirectToCheckout({ sessionId })
 
-    // router.push("/my-trips")
+    router.push("/my-trips")
     toast.success("Reserva criada!")
   }
 

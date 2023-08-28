@@ -13,13 +13,7 @@ export function TripHighlights({ highlights }: TripHighlightsProps) {
         {highlights.map((highlight, index) => (
           <div className="flex items-center gap-1 w-2/4" key={`${index} - ${highlight}`}>
             <div className="relative w-4 h-4">
-              <Image
-                src="/check-icon.png"
-                alt="Icon Check"
-                fill
-                style={{ objectFit: "cover" }}
-                sizes="undefined"
-              />
+              <Image src="/check-icon.png" alt="Icon Check" fill style={{ objectFit: "cover" }} />
             </div>
 
             <p className="text-xs text-grayPrimary">{highlight}</p>

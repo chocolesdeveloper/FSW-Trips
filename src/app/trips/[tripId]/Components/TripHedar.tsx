@@ -15,10 +15,6 @@ export function TripHeader({ tripDetails }: TripHeaderProps) {
           alt={tripDetails.name}
           fill
           style={{ objectFit: "cover" }}
-          sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
-          priority
         />
       </div>
       <div className="flex flex-col p-5 gap-1">

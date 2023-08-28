@@ -25,7 +25,7 @@ export function Header() {
   return (
     <div className="container mx-auto px-5 flex justify-between items-center h-[88px]">
       <Link href="/">
-        <Image width={183} height={32} src="/logo.svg" alt="FullStackWeek Trips logo" priority />
+        <Image width={183} height={32} src="/logo.svg" alt="FullStackWeek Trips logo" />
       </Link>
 
       {status === "unauthenticated" ? (
@@ -48,7 +48,6 @@ export function Header() {
               alt={data?.user?.name!}
               width={28}
               height={28}
-              priority={true}
               className="rounded-full"
             />
           )}

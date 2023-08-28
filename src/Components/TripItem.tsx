@@ -17,7 +17,6 @@ export function TripItem({ trip }: TripItemProps) {
           src={trip.coverImage}
           alt={trip.name}
           fill
-          sizes="320px"
           style={{
             objectFit: "cover",
           }}

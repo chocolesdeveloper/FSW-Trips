@@ -54,21 +54,23 @@ export default function Confirmation({ params }: { params: { tripId: string } })
   async function handleBuyClick() {
     const response = await fetch("/api/payment", {
       method: "POST",
-      body: JSON.stringify({
-        tripId: params.tripId,
-        startDate: searchParams.get("startDate"),
-        endDate: searchParams.get("endDate"),
-        guests: searchParams.get("maxGuests"),
-        totalPrice,
-        coverImage: trip?.coverImage,
-        description: trip?.description,
-        name: trip?.name,
-      }),
+      body: Buffer.from(
+        JSON.stringify({
+          tripId: params.tripId,
+          startDate: searchParams.get("startDate"),
+          endDate: searchParams.get("endDate"),
+          guests: Number(searchParams.get("guests")),
+          totalPrice,
+          coverImage: trip?.coverImage,
+          name: trip?.name,
+          description: trip?.description,
+        })
+      ),
     })
 
-    // if (!response.ok) {
-    //   return toast.error("Ocorreu um erro ao realizar a reserva")
-    // }
+    if (!response.ok) {
+      return toast.error("Ocorreu um erro ao realizar a reserva")
+    }
 
     const { sessionId } = await response.json()
 

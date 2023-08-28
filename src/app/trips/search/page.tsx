@@ -12,9 +12,9 @@ export default function Trips() {
   useEffect(() => {
     async function fetchTrips() {
       const response = await fetch(
-        `http://localhost:3000/api/trips/search?text=${
-          searchParams.get("text") ?? ""
-        }&startDate=${searchParams.get("startDate")}&budget=${searchParams.get("budget")}`
+        `/api/trips/search?text=${searchParams.get("text") ?? ""}&startDate=${searchParams.get(
+          "startDate"
+        )}&budget=${searchParams.get("budget")}`
       )
 
       const res = await response.json()

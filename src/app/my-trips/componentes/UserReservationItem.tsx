@@ -20,7 +20,7 @@ export function UserReservationItem({ reservation, onReload }: UserReservationIt
   const { trip } = reservation
 
   async function handleDeleteClick(reservationId: string) {
-    const response = await fetch(`http://localhost:3000/api/trips/reservation/${reservationId}`, {
+    const response = await fetch(`/api/trips/reservation/${reservationId}`, {
       method: "DELETE",
     })
 

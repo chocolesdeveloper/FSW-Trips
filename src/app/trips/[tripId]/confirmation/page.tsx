@@ -52,7 +52,7 @@ export default function Confirmation({ params }: { params: { tripId: string } })
   }, [status, searchParams])
 
   async function handleBuyClick() {
-    const response = await fetch("http://localhost:3000/api/payment", {
+    const response = await fetch("/api/payment", {
       method: "POST",
       body: JSON.stringify({
         tripId: params.tripId,

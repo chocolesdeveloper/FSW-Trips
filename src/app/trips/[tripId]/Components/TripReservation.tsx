@@ -41,7 +41,7 @@ export function TripReservation({
 
   async function onSubmit(data: TripReservationForm) {
     try {
-      const response = await fetch("http://localhost:3000/api/trips/check", {
+      const response = await fetch("/api/trips/check", {
         method: "POST",
         body: JSON.stringify({
           startDate: data.startDate,

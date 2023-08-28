@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma"
 import { stripe } from "@/lib/stripe"
-import { Session } from "inspector"
 import { NextResponse } from "next/server"
 
 export async function POST(request: Request) {

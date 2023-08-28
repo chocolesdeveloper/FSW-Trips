@@ -66,9 +66,9 @@ export default function Confirmation({ params }: { params: { tripId: string } })
       }),
     })
 
-    if (!response.ok) {
-      return toast.error("Ocorreu um erro ao realizar a reserva")
-    }
+    // if (!response.ok) {
+    //   return toast.error("Ocorreu um erro ao realizar a reserva")
+    // }
 
     const { sessionId } = await response.json()
 

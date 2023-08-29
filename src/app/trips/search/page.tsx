@@ -26,13 +26,15 @@ export default function Trips() {
   }, [])
 
   return (
-    <div className="container mx-auto flex flex-col items-center">
-      <h1 className="text-primaryDarker font-semibold text-xl">Hospedágens Encontradas</h1>
-      <h2 className="text-grayPrimary font-medium mb-5">
+    <div className="container mx-auto flex flex-col items-center lg:items-start">
+      <h1 className="text-primaryDarker font-semibold text-xl lg:text-[2.5rem] lg:w-full">
+        Hospedágens Encontradas
+      </h1>
+      <h2 className="text-grayPrimary font-medium mb-5 lg:mt-6 lg:w-full">
         {trips.length === 0 ? "Não achamos nada :(" : "Listamos as melhores viagens para você!"}
       </h2>
 
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-col items-center gap-3 lg:grid lg:grid-cols-4 lg:gap-10 lg:mt-6 lg:pb-16">
         {trips && trips.map((trip) => <TripItem key={trip.id} trip={trip} />)}
       </div>
     </div>

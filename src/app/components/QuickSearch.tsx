@@ -12,40 +12,38 @@ export function QuickSearch() {
         <div className="w-full h-[1px] bg-grayPrimary" />
       </div>
 
-      <div className="flex items-center mt-5">
-        <div className="flex w-full justify-around">
-          <div className="flex flex-col items-center gap-1">
-            <Link href={`/trips/search?text=hotel`}>
-              <div className="flex flex-col items-center">
-                <Image src="/hotel-icon.png" alt="Hotel" width={25} height={25} />
-                <p className="text-grayPrimary text-sm">Hotel</p>
-              </div>
-            </Link>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <Link href={`/trips/search?text=fazenda`}>
-              <div className="flex flex-col items-center">
-                <Image src="/farm-icon.png" alt="Fazenda" width={25} height={25} />
-                <p className="text-grayPrimary text-sm">Fazenda</p>
-              </div>
-            </Link>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <Link href={`/trips/search?text=chalé`}>
-              <div className="flex flex-col items-center">
-                <Image src="/cottage-icon.png" alt="Chale" width={25} height={25} />
-                <p className="text-grayPrimary text-sm">Chalé</p>
-              </div>
-            </Link>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <Link href={`/trips/search?text=pousada`}>
-              <div className="flex flex-col items-center">
-                <Image src="/inn-icon.png" alt="Pousada" width={25} height={25} />
-                <p className="text-grayPrimary text-sm">Pousada</p>
-              </div>
-            </Link>
-          </div>
+      <div className="flex items-center mt-5 w-full justify-around lg:justify-center lg:gap-60 lg:my-10">
+        <div className="flex flex-col items-center gap-1">
+          <Link href={`/trips/search?text=hotel`}>
+            <div className="flex flex-col items-center">
+              <Image src="/hotel-icon.png" alt="Hotel" width={25} height={25} />
+              <p className="text-grayPrimary text-sm lg:text-base">Hotel</p>
+            </div>
+          </Link>
+        </div>
+        <div className="flex flex-col items-center gap-1">
+          <Link href={`/trips/search?text=fazenda`}>
+            <div className="flex flex-col items-center">
+              <Image src="/farm-icon.png" alt="Fazenda" width={25} height={25} />
+              <p className="text-grayPrimary text-sm lg:text-base">Fazenda</p>
+            </div>
+          </Link>
+        </div>
+        <div className="flex flex-col items-center gap-1">
+          <Link href={`/trips/search?text=chalé`}>
+            <div className="flex flex-col items-center">
+              <Image src="/cottage-icon.png" alt="Chale" width={25} height={25} />
+              <p className="text-grayPrimary text-sm lg:text-base">Chalé</p>
+            </div>
+          </Link>
+        </div>
+        <div className="flex flex-col items-center gap-1">
+          <Link href={`/trips/search?text=pousada`}>
+            <div className="flex flex-col items-center">
+              <Image src="/inn-icon.png" alt="Pousada" width={25} height={25} />
+              <p className="text-grayPrimary text-sm lg:text-base">Pousada</p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

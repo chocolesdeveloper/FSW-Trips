@@ -113,7 +113,7 @@ export function TripReservation({
               selected={field.value}
               error={!!errors?.startDate}
               errorMessage={errors?.startDate?.message}
-              placeholderText="Data final"
+              placeholderText="Data incial"
               minDate={
                 isBefore(new Date(tripStartDate), new Date())
                   ? new Date()

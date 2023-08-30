@@ -47,35 +47,39 @@ export function TripSearch() {
         />
 
         <div className="flex gap-4 lg:w-full">
-          <Controller
-            name="startDate"
-            control={control}
-            render={({ field }) => (
-              <DatePicker
-                onChange={field.onChange as any}
-                selected={field.value}
-                placeholderText="Data de partida"
-                minDate={new Date()}
-              />
-            )}
-          />
+          <div className="w-1/2">
+            <Controller
+              name="startDate"
+              control={control}
+              render={({ field }) => (
+                <DatePicker
+                  onChange={field.onChange as any}
+                  selected={field.value}
+                  placeholderText="Data de partida"
+                  minDate={new Date()}
+                />
+              )}
+            />
+          </div>
 
-          <Controller
-            name="budget"
-            control={control}
-            render={({ field }) => (
-              <CurrencyInput
-                placeholder="Orçamento"
-                allowDecimals={false}
-                onValueChange={field.onChange}
-                value={field.value}
-                onBlur={field.onBlur}
-              />
-            )}
-          />
+          <div className="w-1/2">
+            <Controller
+              name="budget"
+              control={control}
+              render={({ field }) => (
+                <CurrencyInput
+                  placeholder="Orçamento"
+                  allowDecimals={false}
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  onBlur={field.onBlur}
+                />
+              )}
+            />
+          </div>
         </div>
 
-        <Button className="lg:w-1/4 lg:h-fit">Pesquisar</Button>
+        <Button className="lg:w-1/4">Pesquisar</Button>
       </div>
     </form>
   )

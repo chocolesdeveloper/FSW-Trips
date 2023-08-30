@@ -90,7 +90,13 @@ export function TripReservation({
   const endDate = watch("endDate")
 
   return (
-    <form className="flex flex-col px-2" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="flex flex-col px-2 lg:min-w-[380px] lg:p-5 lg:border lg:border-primaryLighter lg:rounded-lg lg:shadow-md "
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <p className="hidden text-xl text-primaryDarker mb-4 lg:block">
+        <span className="font-semibold">R${pricePorDay} por dia</span>
+      </p>
       <div className="flex items-center gap-3 ">
         <Controller
           name="startDate"
@@ -169,7 +175,7 @@ export function TripReservation({
         )}
       </div>
 
-      <div className="border-b pb-10 border-grayLighter">
+      <div className="border-b pb-10 border-grayLighter lg:border-none lg:pb-0">
         <Button className="mt-3 w-full">Reservar agora</Button>
       </div>
     </form>

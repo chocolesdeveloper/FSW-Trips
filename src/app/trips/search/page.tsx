@@ -26,7 +26,7 @@ export default function Trips() {
   }, [])
 
   return (
-    <div className="container mx-auto flex flex-col items-center lg:items-start">
+    <div className="container mx-auto flex flex-col items-center lg:items-start lg:mt-10">
       <h1 className="text-primaryDarker font-semibold text-xl lg:text-[2.5rem] lg:w-full">
         Hospedágens Encontradas
       </h1>

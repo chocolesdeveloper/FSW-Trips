@@ -94,7 +94,7 @@ export function TripReservation({
       className="flex flex-col px-2 lg:min-w-[380px] lg:p-5 lg:border lg:border-primaryLighter lg:rounded-lg lg:shadow-md "
       onSubmit={handleSubmit(onSubmit)}
     >
-      <p className="hidden text-xl text-primaryDarker mb-4 lg:block">
+      <p className="hidden text-xl text-primaryDarker mb-4 lg:blo">
         <span className="font-semibold">R${pricePorDay} por dia</span>
       </p>
       <div className="flex items-center gap-3 ">

@@ -75,7 +75,7 @@ export function TripSearch() {
           />
         </div>
 
-        <Button className="lg:w-1/4">Pesquisar</Button>
+        <Button className="lg:w-1/4 lg:h-fit">Pesquisar</Button>
       </div>
     </form>
   )

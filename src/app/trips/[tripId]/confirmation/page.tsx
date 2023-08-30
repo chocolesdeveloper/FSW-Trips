@@ -87,7 +87,7 @@ export default function Confirmation({ params }: { params: { tripId: string } })
   const guests = searchParams.get("maxGuests")
 
   return (
-    <div className="container mx-auto p-5">
+    <div className="container mx-auto p-5 lg:max-w-[500px]">
       <h1 className="font-semibold text-xl text-primaryDarker ">Sua Viagem</h1>
       {/* Card */}
       <div className="flex flex-col p-5 mt-5 border border-grayLighter rounded-lg shadow-lg ">

@@ -48,7 +48,7 @@ export default function MyTrips() {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col gap-5 items-center mt-5">
+        <div className="flex flex-col gap-5 items-center mt-5 lg:max-w-[500px] lg:mx-auto">
           <p className="text-sm text-primaryDarker font-medium">
             Infelizmente você não tem nem uma viagem :(
           </p>

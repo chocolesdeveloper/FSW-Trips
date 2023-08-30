@@ -22,7 +22,7 @@ export default async function TripDetails({ params }: { params: { tripId: string
   if (!tripDetails) return
 
   return (
-    <div className="container mx-auto flex flex-col lg:px-40">
+    <div className="container mx-auto flex flex-col lg:px-40 lg:mt-10">
       <TripHeader tripDetails={tripDetails} />
       <div className="flex flex-col lg:flex-row lg:mt-12 lg:gap-20">
         <div className="lg:order-2">

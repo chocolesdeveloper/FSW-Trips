@@ -9,7 +9,7 @@ export async function POST(request: Request) {
   if (!sig) {
     return new NextResponse(
       JSON.stringify({
-        message: "Not found stripe-signature",
+        message: "Not Found stripe-signature",
       }),
       { status: 404 }
     )

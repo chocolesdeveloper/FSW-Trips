@@ -54,18 +54,16 @@ export default function Confirmation({ params }: { params: { tripId: string } })
   async function handleBuyClick() {
     const response = await fetch("/api/payment", {
       method: "POST",
-      body: Buffer.from(
-        JSON.stringify({
-          tripId: params.tripId,
-          startDate: searchParams.get("startDate"),
-          endDate: searchParams.get("endDate"),
-          guests: Number(searchParams.get("guests")),
-          totalPrice,
-          coverImage: trip?.coverImage,
-          name: trip?.name,
-          description: trip?.description,
-        })
-      ),
+      body: JSON.stringify({
+        tripId: params.tripId,
+        startDate: searchParams.get("startDate"),
+        endDate: searchParams.get("endDate"),
+        guests: Number(searchParams.get("maxGuests")),
+        totalPrice,
+        coverImage: trip?.coverImage,
+        name: trip?.name,
+        description: trip?.description,
+      }),
     })
 
     if (!response.ok) {

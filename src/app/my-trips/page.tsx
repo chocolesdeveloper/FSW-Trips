@@ -15,6 +15,8 @@ export default function MyTrips() {
     }>[]
   >([])
 
+  console.log(reservations)
+
   const { status, data } = useSession()
   const router = useRouter()
 

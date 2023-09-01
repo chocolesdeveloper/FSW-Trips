@@ -5,7 +5,7 @@
 
 # Buscador de viagens
 
-O buscador de viagens é uma ferramenta para que você possa encontrar sua próxima viagem, poderá pesquisar para onde você queira ir, junto ao dia que fica melhor e o preço que cabe no seu bolso, após escolher a sua proxima viajem, verá um resumo da viagem com seus destaques, e poderá marcar o dia perfeito para ir, após tudo escolhido, será redirecionado ao [Stripe](https://stripe.com/), para finalizar sua compra, (Coloque no número do cartão de teste -> *4242 4242 4242 4242*), após finalizar a compra, poderá acessar suas viagens no meu superior, além de conseguir cancelar caso mude ideia.
+O buscador de viagens é uma ferramenta para que você possa encontrar sua próxima viagem, poderá pesquisar para onde você queira ir, junto ao dia que fica melhor e o preço que cabe no seu bolso, após escolher a sua próxima viajem, verá um resumo da viagem com seus destaques, e poderá marcar o dia perfeito para ir, após tudo escolhido, será redirecionado ao [Stripe](https://stripe.com/), para finalizar sua compra, (Coloque no número do cartão de teste -> *4242 4242 4242 4242*), após finalizar a compra, poderá acessar suas viagens no meu superior, além de conseguir cancelar caso mude ideia.
 
 Faça um teste [aqui](https://fsw-trips-five.vercel.app/).
 
